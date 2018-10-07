@@ -42,6 +42,7 @@ public class ColoronShip : MonoBehaviour {
             }
 
         }
+        // Random color på alla object
         if (Input.GetKey(KeyCode.Space))
         {
             Randomcolor = true;

@@ -1002,6 +1002,8 @@ MonoBehaviour:
   halfspeed: 0
   other: {fileID: 2007268845}
   Timer: 0
+  newPostions: 0
+  randomspeed: 0
 --- !u!114 &2007268847
 MonoBehaviour:
   m_ObjectHideFlags: 0

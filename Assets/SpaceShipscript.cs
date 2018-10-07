@@ -9,47 +9,39 @@ public class SpaceShipscript : MonoBehaviour {
    public Transform other;
     public float Timer;
     private float variabel = 1;
-   
+    public float newPostions;
+    public float randomspeed;
     // Use this for initialization
     void Start () {
-        halfspeed = false;
+        halfspeed = false; // Gör halfspeed of 
+        randomspeed = Random.Range(1f, 10f); // randomiserar hastigheten i början fårn 1 till 10
         
-
-
     }
-	
-	// Update is called once per frame
+    // Update is called once per frame
 	void Update () {
-        // Objektet åker fram
-        transform.Translate(5f * Time.deltaTime, 0, 0, Space.Self);
+        transform.Translate(randomspeed * Time.deltaTime, 0, 0, Space.Self); // Objektet åker fram och Gör hastigheten för skepet oberoende av FPS
 
-        // Svänger höger
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
-            
-        }
-        // Svänger Vänster
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Rotate(0f, 0f, -rotationSpeed * Time.deltaTime);
+            transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime); // Svänger höger och gör det oberonde av FPS
 
         }
-       
-        // Åker långsammare när man trycker ner S tangenten
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(0f, 0f, -rotationSpeed * Time.deltaTime);  // Svänger Vänster och gör det oberoende av FPS
+
+        }
         if (Input.GetKey(KeyCode.S))
         {
-            halfspeed = true;
+            halfspeed = true; // Gör halfspeed ON
 
             if (halfspeed == true)
             {
-                transform.Translate(-2.5f * Time.deltaTime, 0, 0, Space.Self);
+                transform.Translate(-2.5f * Time.deltaTime, 0, 0, Space.Self); // När man Trycker ner S så åker den dubelts så långsammt
             }
 
         }
-
-        // Timer ökar varenda sekund
-        Timer += Time.deltaTime;
+        Timer += Time.deltaTime; // Timer ökar varenda sekund
         if (Timer > variabel && Timer < variabel + 0.2)
         {
             Debug.Log(string.Format("Timer:"));
@@ -58,6 +50,18 @@ public class SpaceShipscript : MonoBehaviour {
             variabel = (variabel + 1);
             
         } 
-        
+        Vector3 newPosition = transform.position; // skapar position
+        if (newPosition.x > 8.89f || newPosition.x < -8.89f)
+        {
+            newPosition.x = -newPosition.x; // sätter ny position x
+
+        }
+        if (newPosition.y > 5.0f || newPosition.y < -5.0f)
+        {
+            newPosition.y = -newPosition.y; // sätter ny position y
+
+        }
+        transform.position = newPosition; // sätter skeppets position
+
     }
 }
