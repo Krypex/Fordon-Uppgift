@@ -11,14 +11,18 @@ public class SpaceShipscript : MonoBehaviour {
     private float variabel = 1;
     public float newPostions;
     public float randomspeed;
+    public float newPostionss;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         halfspeed = false; // Gör halfspeed of 
-        randomspeed = Random.Range(1f, 10f); // randomiserar hastigheten i början fårn 1 till 10
-        
-    }
+        randomspeed = Random.Range(5, 10); // randomiserar hastigheten i början fårn 1 till 10
+
+        transform.position = new Vector3(Random.Range(-9, 9), Random.Range(-5, 5));
+    }  
     // Update is called once per frame
-	void Update () {
+	void Update ()
+        {
         transform.Translate(randomspeed * Time.deltaTime, 0, 0, Space.Self); // Objektet åker fram och Gör hastigheten för skepet oberoende av FPS
 
         if (Input.GetKey(KeyCode.D))
@@ -33,15 +37,14 @@ public class SpaceShipscript : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.S))
         {
-            halfspeed = true; // Gör halfspeed ON
 
-            if (halfspeed == true)
-            {
-                transform.Translate(-2.5f * Time.deltaTime, 0, 0, Space.Self); // När man Trycker ner S så åker den dubelts så långsammt
-            }
-
+                transform.Translate(randomspeed/ -2 * Time.deltaTime, 0, 0, Space.Self); // När man Trycker ner S så åker den dubelts så långsammt
         }
-        Timer += Time.deltaTime; // Timer ökar varenda sekund
+        //if (Input.GetKeyUp(KeyCode.S))
+        {
+           // transform.Translate(randomspeed * 2 * Time.deltaTime, 0, 0, Space.Self);
+        }
+        Timer += Time.deltaTime; // Timer ökar varenda sekund i real tid
         if (Timer > variabel && Timer < variabel + 0.2)
         {
             Debug.Log(string.Format("Timer:"));
