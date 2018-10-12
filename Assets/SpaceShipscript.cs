@@ -18,7 +18,7 @@ public class SpaceShipscript : MonoBehaviour {
         halfspeed = false; // Gör halfspeed of 
         randomspeed = Random.Range(5, 10); // randomiserar hastigheten i början fårn 1 till 10
 
-        transform.position = new Vector3(Random.Range(-9, 9), Random.Range(-5, 5));
+        transform.position = new Vector3(Random.Range(-9, 9), Random.Range(-5, 5)); // startar på olika positioner varenda nytt Game
     }  
     // Update is called once per frame
 	void Update ()
@@ -32,7 +32,7 @@ public class SpaceShipscript : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Rotate(0f, 0f, -rotationSpeed * Time.deltaTime);  // Svänger Vänster och gör det oberoende av FPS
+            transform.Rotate(0f, 0f, -rotationSpeed/ 2 * Time.deltaTime);  // Svänger Vänster och gör det oberoende av FPS
 
         }
         if (Input.GetKey(KeyCode.S))
@@ -53,7 +53,7 @@ public class SpaceShipscript : MonoBehaviour {
             variabel = (variabel + 1);
             
         } 
-        Vector3 newPosition = transform.position; // skapar position
+        Vector3 newPosition = transform.position; // position värdet uppdateras
         if (newPosition.x > 8.89f || newPosition.x < -8.89f)
         {
             newPosition.x = -newPosition.x; // sätter ny position x
